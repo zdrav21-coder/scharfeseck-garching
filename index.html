@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharfes Eck — Restaurant & Events in Garching</title>
+  <meta name="description" content="Sharfes Eck – Restaurant, Bar und Veranstaltungsort in Garching bei München. Willkommen!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f1e6;
+      --dark: #1c1a17;
+      --gold: #c9a227;
+      --gold-soft: #e0c568;
+      --text: #2b2823;
+      --muted: #6b6458;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1100px, 90%); margin: 0 auto; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247, 241, 230, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(28,26,23,0.08);
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0;
+    }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; }
+    .brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 1.8rem; font-size: 0.9rem; font-weight: 400; }
+    .nav-links a { transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
+
+    /* ===== HERO ===== */
+    header.hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex; align-items: center;
+      background:
+        linear-gradient(rgba(28,26,23,0.55), rgba(28,26,23,0.75)),
+        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+    }
+    .hero-content { width: 100%; padding: 4rem 0; }
+    .hero .eyebrow {
+      display: inline-block; font-size: 0.8rem; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold-soft); margin-bottom: 1rem;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); margin-bottom: 1rem; }
+    .hero p.lead {
+      font-size: clamp(1rem, 2vw, 1.25rem); max-width: 640px;
+      margin: 0 auto 2rem; color: #ece6da;
+    }
+    .hero .meta { font-size: 0.95rem; color: var(--gold-soft); letter-spacing: 1px; margin-bottom: 2rem; }
+    .btn {
+      display: inline-block; padding: 0.85rem 2rem; border-radius: 40px;
+      background: var(--gold); color: var(--dark); font-weight: 600;
+      font-size: 0.9rem; letter-spacing: 0.5px; transition: transform 0.2s, background 0.2s;
+    }
+    .btn:hover { background: var(--gold-soft); transform: translateY(-2px); }
+    .btn.outline { background: transparent; border: 1.5px solid var(--gold-soft); color: #fff; }
+    .btn.outline:hover { background: var(--gold-soft); color: var(--dark); }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 5rem 0; }
+    .section-head { text-align: center; margin-bottom: 3rem; }
+    .section-head .eyebrow {
+      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 600;
+    }
+    .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-top: 0.6rem; }
+    .section-head p { color: var(--muted); max-width: 620px; margin: 0.8rem auto 0; }
+
+    /* ===== INVITE / WELCOME ===== */
+    .welcome { background: #fff; }
+    .welcome .invite {
+      max-width: 720px; margin: 0 auto; text-align: center;
+      background: var(--cream); border: 1px solid rgba(201,162,39,0.3);
+      border-radius: 16px; padding: 3rem 2rem;
+    }
+    .welcome .invite h3 { color: var(--gold); font-size: 1.4rem; margin-bottom: 1rem; }
+    .welcome .invite p { color: var(--text); font-size: 1.05rem; margin-bottom: 0.8rem; }
+
+    /* ===== MENU / HIGHLIGHTS CARDS ===== */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; }
+    .card {
+      background: #fff; border-radius: 16px; padding: 2.2rem 1.8rem;
+      box-shadow: 0 10px 30px rgba(28,26,23,0.06);
+      border-top: 4px solid var(--gold);
+      transition: transform 0.25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card h3 { font-size: 1.35rem; margin-bottom: 0.7rem; }
+    .card p { color: var(--muted); font-size: 0.98rem; }
+
+    /* ===== EVENTS ===== */
+    .events { background: var(--dark); color: #f0e9dc; }
+    .events .section-head h2 { color: #fff; }
+    .events .section-head .eyebrow { color: var(--gold-soft); }
+    .events .section-head p { color: #b8b0a2; }
+    .event-list { display: grid; gap: 1.4rem; }
+    .event {
+      display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center;
+      padding: 1.6rem 1.8rem; border-radius: 14px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(201,162,39,0.2);
+    }
+    .event h3 { font-size: 1.2rem; margin-bottom: 0.35rem; color: #fff; }
+    .event p { color: #b8b0a2; font-size: 0.92rem; }
+    .event .tag {
+      font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--dark); background: var(--gold-soft); padding: 0.4rem 0.9rem;
+      border-radius: 40px; font-weight: 600; white-space: nowrap;
+    }
+    @media (max-width: 600px) { .event { grid-template-columns: 1fr; } }
+
+    /* ===== LOCATION & CONTACT ===== */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .info-box {
+      background: #fff; border-radius: 16px; padding: 2.2rem;
+      box-shadow: 0 10px 30px rgba(28,26,23,0.06);
+    }
+    .info-box h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--dark); }
+    .info-box p, .info-box li { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .info-box ul { list-style: none; }
+    .info-box ul li::before { content: "→ "; color: var(--gold); font-weight: 600; }
+    .info-box a { color: var(--gold); font-weight: 500; }
+    .info-box a:hover { text-decoration: underline; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark); color: #b8b0a2; text-align: center;
+      padding: 2.5rem 0; font-size: 0.85rem;
+    }
+    footer .brand { color: #fff; margin-bottom: 0.6rem; }
+    footer .brand span { color: var(--gold); }
+
+    /* ===== ANIMATION ===== */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#top" class="brand">Sharfes <span>Eck</span></a>
+      <div class="nav-links">
+        <a href="#welcome">Willkommen</a>
+        <a href="#menu">Menü</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container hero-content">
+      <span class="eyebrow">Garching bei München · 2026</span>
+      <h1>Sharfes Eck</h1>
+      <p class="lead">Hallo und willkommen! Genießen Sie erlesene Küche, spritzige Getränke und unvergessliche Abende in unserem Restaurant &amp; Event-Location.</p>
+      <p class="meta">Schleißheimer Str. 28 · 85748 Garching</p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn">Menü entdecken</a>
+        <a href="#contact" class="btn outline">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- WELCOME / INVITE -->
+  <section class="welcome" id="welcome">
+    <div class="container">
+      <div class="invite reveal">
+        <h3>Hey, classmate! Save the date.</h3>
+        <p>You're cordially invited to come and reminisce with the <strong>Salguerro High School Class of 2005</strong>.</p>
+        <p>Expect a night filled with fun and surprises!</p>
+        <p style="margin-top:1.2rem; font-weight:600; color:var(--gold);">10.18.25 · Garching</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU / HIGHLIGHTS -->
+  <section id="menu">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Unsere Speisekarte</span>
+        <h2>Menü &amp; Veranstaltungen</h2>
+        <p>Von herzhaften Gerichten bis zu prickelnden Getränken — bei uns kommt jeder auf seine Kosten.</p>
+      </div>
+      <div class="cards">
+        <div class="card reveal">
+          <h3>Menü</h3>
+          <p>You'll get to dine, then dance your heart out. Lassen Sie sich von unserer Küche verwöhnen.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Getränke</h3>
+          <p>Enjoy free flowing sparkly boozy drinks — prickelnde Getränke, den ganzen Abend lang.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Night Long Karaoke</h3>
+          <p>Belt out your favorite tunes all night long. Singen Sie Ihre Lieblingslieder bis in die Nacht.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events" id="events">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Other Events</span>
+        <h2>Kommende Veranstaltungen</h2>
+        <p>Ein jährliches Highlight — und noch viele mehr.</p>
+      </div>
+      <div class="event-list">
+        <div class="event reveal">
+          <div>
+            <h3>Team Building</h3>
+            <p>An Annual National Industry Event. January 1, 2022, 9:00 a.m. to 5:00 p.m. Conference Hall A, National Event Hall.</p>
+          </div>
+          <span class="tag">Annual</span>
+        </div>
+        <div class="event reveal">
+          <div>
+            <h3>Run for a Cause</h3>
+            <p>An Annual National Industry Event. January 1, 2022, 9:00 a.m. to 5:00 p.m. Conference Hall A, National Event Hall.</p>
+          </div>
+          <span class="tag">Charity</span>
+        </div>
+        <div class="event reveal">
+          <div>
+            <h3>Annual Bake Sale</h3>
+            <p>An Annual National Industry Event. January 1, 2022, 9:00 a.m. to 5:00 p.m. Conference Hall A, National Event Hall.</p>
+          </div>
+          <span class="tag">Community</span>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+        <a href="#contact" class="btn">Jetzt beitreten</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & LOCATION -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2>So finden Sie uns</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="info-box reveal">
+          <h3>Adresse</h3>
+          <p>Sharfes Eck<br>Schleißheimer Str. 28<br>85748 Garching bei München</p>
+          <h3 style="margin-top:1.5rem;">Getting There</h3>
+          <ul>
+            <li>By train: Belden Station</li>
+            <li>By cab: Carriers Taxi or Helio Cab</li>
+            <li>Pin: Whelton Bar &amp; Restaurant</li>
+          </ul>
+        </div>
+        <div class="info-box reveal">
+          <h3>Kontakt</h3>
+          <p><strong>E-Mail:</strong><br><a href="mailto:info@sharfes-eck.com">info@sharfes-eck.com</a></p>
+          <p><strong>Telefon:</strong><br><a href="tel:+11234567890">(123) 456 7890</a></p>
+          <h3 style="margin-top:1.5rem;">Öffnungszeiten</h3>
+          <p>Bla bla bla — bitte tragen Sie hier Ihre tatsächlichen Öffnungszeiten ein.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="brand">Sharfes <span>Eck</span></div>
+      <p>© 2026 Sharfes Eck · Garching bei München</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
