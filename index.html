@@ -109,10 +109,11 @@
     /* ===== MENU / HIGHLIGHTS CARDS ===== */
     .card-img {
       width: 100%;
-      aspect-ratio: 4 / 3;     /* or 16/9, 1/1, whatever fits */
+      aspect-ratio: 16/9;     /* or 16/9, 1/1, whatever fits */
       object-fit: cover;       /* crops to fill, no distortion */
       display: block;
       border-radius: 8px;
+      border: 3px solid #f7f1e6; /* THIS draws the visible line */
       margin: 0.75rem 0;
     }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; }
