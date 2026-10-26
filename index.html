@@ -171,6 +171,49 @@
     /* ===== ANIMATION ===== */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
+
+        /* Style the dialog frame */
+        .image-modal {
+          border: none;
+          padding: 0;
+          background: transparent;
+          max-width: 90vw;
+          max-height: 90vh;
+          overflow: visible;
+        }
+        
+        /* The dark overlay behind the frame */
+        .image-modal::backdrop {
+          background: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(4px); /* Optional: blurs the background */
+        }
+        
+        /* Style the image inside the frame */
+        .image-modal img {
+          max-width: 100%;
+          max-height: 90vh;
+          display: block;
+          border-radius: 8px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        /* Optional close button styling */
+        .close-btn {
+          position: absolute;
+          top: -40px;
+          right: -10px;
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 30px;
+          cursor: pointer;
+          line-height: 1;
+        }
+        
+        .close-btn:hover {
+          color: #ccc;
+        }
+    
   </style>
 </head>
 <body>
@@ -352,6 +395,31 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 
+<script>
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const triggerImg = document.getElementById('menuImage');
+  const closeBtn = document.getElementById('closeModal');
+
+  // Open the modal when the card image is clicked
+  triggerImg.addEventListener('click', () => {
+    modalImg.src = triggerImg.src; // Copy the source
+    modal.showModal(); // Display the native modal frame
+  });
+
+  // Close when the close button is clicked
+  closeBtn.addEventListener('click', () => {
+    modal.close();
+  });
+
+  // Close when clicking outside the image (on the backdrop)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.close();
+    }
+  });
+</script>
+  
   <!-- The Dialog (Frame) - Place this once at the bottom of your body -->
 <dialog id="imageModal" class="image-modal">
   <img src="" alt="Enlarged view" id="modalImg">
