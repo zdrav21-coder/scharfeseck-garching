@@ -223,14 +223,17 @@
         <p>Von herzhaften Gerichten bis zu prickelnden Getränken — bei uns kommt jeder auf seine Kosten.</p>
       </div>
       <div class="cards">
-        <div class="card reveal">
-          <h3>Essen</h3>
-          <p>Für das Warme auf dem Teller ist gesorgt: Alle paar Tage wechseln wir zwischen Gerichten, Chili'con'Carne, Gulaschsuppe und so weiter</p>
-          <br></br>
-            <a href="https://scharfeseck-garching.de/images/menu_food.png" target="_blank" rel="noopener">
-            <img src="https://scharfeseck-garching.de/images/menu_food.png" alt="Warme Gerichte" class="card-img">
-            </a>
-        </div>
+      <div class="card reveal">
+        <h3>Essen</h3>
+        <p>Für das Warme auf dem Teller ist gesorgt: Alle paar Tage wechseln wir zwischen Gerichten, Chili'con'Carne, Gulaschsuppe und so weiter</p>
+        <br>
+        <!-- Removed the <a> tag. We will add an ID to the image to trigger the modal -->
+        <img src="https://scharfeseck-garching.de/images/menu_food.png" 
+             alt="Warme Gerichte" 
+             class="card-img" 
+             id="menuImage" 
+             style="cursor: zoom-in;">
+      </div>
     <div class="card reveal">
           <h3>Getränke</h3>
           <p>Was darf's zu trinken sein? Kalt, spritzig, wärmend oder einfach nur gut – stöber durch unsere Getränke und finde deinen Liebling. Prost!</p>
@@ -348,5 +351,13 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+
+  <!-- The Dialog (Frame) - Place this once at the bottom of your body -->
+<dialog id="imageModal" class="image-modal">
+  <img src="" alt="Enlarged view" id="modalImg">
+  <!-- Optional: A close button for better UX -->
+  <button id="closeModal" class="close-btn">&times;</button>
+</dialog>
+  
 </body>
 </html>
