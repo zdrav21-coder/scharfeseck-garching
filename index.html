@@ -267,60 +267,58 @@
         <p>Von herzhaften Gerichten bis zu prickelnden Getränken — bei uns kommt jeder auf seine Kosten.</p>
       </div>
       <div class="cards">
-      <div class="card reveal">
-        <h3>Essen</h3>
-        <p>Für das Warme auf dem Teller ist gesorgt: Alle paar Tage wechseln wir zwischen Gerichten, Chili'con'Carne, Gulaschsuppe und so weiter.</p>
-        <br>
-        <img src="https://scharfeseck-garching.de/images/menu_food.png"
-             alt="Warme Gerichte"
-             class="card-img"
-             id="menuImage">
-      </div>    
-    <div class="card reveal">
+        <div class="card reveal">
+          <h3>Essen</h3>
+          <p>Für das Warme auf dem Teller ist gesorgt: Alle paar Tage wechseln wir zwischen Gerichten, Chili'con'Carne, Gulaschsuppe und so weiter.</p>
+          <br>
+          <img src="https://scharfeseck-garching.de/images/menu_food.png"
+               alt="Warme Gerichte"
+               class="card-img menu-trigger">
+        </div>
+      
+        <div class="card reveal">
           <h3>Getränke</h3>
           <p>Was darf's zu trinken sein? Kalt, spritzig, wärmend oder einfach nur gut – stöber durch unsere Getränke und finde deinen Liebling. Prost!</p>
           <br>
           <img src="https://scharfeseck-garching.de/images/drink_menu.png"
-             alt="Drinks"
-             class="card-img"
-             id="menuImage">
+               alt="Drinks"
+               class="card-img menu-trigger">
         </div>
-
-        
+      
         <div class="card reveal">
           <h3>Verschiedene Info</h3>
           <p>Bei uns ist immer was los: Events, Motorradtreffen, Specials zu den FC-Bayern-Heimspielen, Kinderpartys und saisonale Highlights.</p>
           <br>
           <img src="https://scharfeseck-garching.de/images/free_wifi.png"
-             alt="wifi"
-             class="card-img"
-             id="menuImage">
+               alt="wifi"
+               class="card-img menu-trigger">
           <img src="https://scharfeseck-garching.de/images/nette_toilette.png"
-             alt="nette"
-             class="card-img"
-             id="menuImage">    
+               alt="nette"
+               class="card-img menu-trigger">
         </div>
-        
-      <dialog id="imageModal">
-      <img src="" id="modalImg" style="max-width:90vw; max-height:90vh;">
-      </dialog>
       
-      <script>
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        const triggerImg = document.getElementById('menuImage');
+        <dialog id="imageModal">
+          <img src="" id="modalImg" style="max-width:90vw; max-height:90vh;">
+        </dialog>
       
-        triggerImg.addEventListener('click', () => {
-          modalImg.src = triggerImg.src;
-          modal.showModal();
-        });
+        <script>
+          const modal = document.getElementById('imageModal');
+          const modalImg = document.getElementById('modalImg');
+          // Grab ALL images with the class, not just one ID
+          const triggerImgs = document.querySelectorAll('.menu-trigger');
       
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) modal.close();
-        });
-        
-      </script>
-
+          triggerImgs.forEach(img => {
+            img.addEventListener('click', () => {
+              modalImg.src = img.src;
+              modal.showModal();
+            });
+          });
+      
+          // Close when clicking the backdrop (outside the image)
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.close();
+          });
+        </script>
       </div>
     </div>
   </section>
