@@ -268,39 +268,33 @@
       <div class="cards">
       <div class="card reveal">
         <h3>Essen</h3>
-        <p>Für das Warme auf dem Teller ist gesorgt: Alle paar Tage wechseln wir zwischen Gerichten, Chili'con'Carne, Gulaschsuppe und so weiter</p>
+        <p>Für das Warme auf dem Teller ist gesorgt: ...</p>
         <br>
-        <img src="https://scharfeseck-garching.de/images/menu_food.png" 
-             alt="Warme Gerichte" 
-             class="card-img" 
-             id="menuImage" 
-             style="cursor: zoom-in;">
+        <img src="https://scharfeseck-garching.de/images/menu_food.png"
+             alt="Warme Gerichte"
+             class="card-img"
+             id="menuImage">
       </div>
+      
+      <dialog id="imageModal">
+        <img src="" id="modalImg" style="max-width:90vw; max-height:90vh;">
+      </dialog>
+      
       <script>
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      const triggerImg = document.getElementById('menuImage');
-      const closeBtn = document.getElementById('closeModal');
-    
-      // Open the modal when the card image is clicked
-      triggerImg.addEventListener('click', () => {
-        modalImg.src = triggerImg.src; // Copy the source
-        modal.showModal(); // Display the native modal frame
-      });
-    
-      // Close when the close button is clicked
-      closeBtn.addEventListener('click', () => {
-        modal.close();
-      });
-    
-      // Close when clicking outside the image (on the backdrop)
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.close();
-        }
-      });
-    </script>
-        
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+        const triggerImg = document.getElementById('menuImage');
+      
+        triggerImg.addEventListener('click', () => {
+          modalImg.src = triggerImg.src;
+          modal.showModal();
+        });
+      
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.close();
+        });
+      </script>
+                
     <div class="card reveal">
           <h3>Getränke</h3>
           <p>Was darf's zu trinken sein? Kalt, spritzig, wärmend oder einfach nur gut – stöber durch unsere Getränke und finde deinen Liebling. Prost!</p>
@@ -417,13 +411,6 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>  
-  <!-- The Dialog (Frame) - Place this once at the bottom of your body -->
-<dialog id="imageModal" class="image-modal">
-  <img src="" alt="Enlarged view" id="modalImg">
-  <!-- Optional: A close button for better UX -->
-  <button id="closeModal" class="close-btn">&times;</button>
-</dialog>
-  
+  </script>   
 </body>
 </html>
