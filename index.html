@@ -292,6 +292,83 @@
     padding-bottom: 8px;
   }
 }
+    
+/* Lightbox popup */
+.gallery-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 12, 10, 0.88);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+  animation: lightboxFade 0.25s ease;
+}
+
+.gallery-lightbox.active {
+  display: flex;
+}
+
+.gallery-lightbox img {
+  display: block;
+  max-width: min(90vw, 850px);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 2px solid rgba(212, 175, 55, 0.75);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+  animation: picturePop 0.3s ease;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(212, 175, 55, 0.7);
+  border-radius: 50%;
+  background: rgba(30, 25, 20, 0.8);
+  color: #f0cc72;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.lightbox-close:hover {
+  transform: rotate(90deg);
+  background: rgba(212, 175, 55, 0.2);
+}
+
+@keyframes lightboxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes picturePop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-lightbox,
+  .gallery-lightbox img {
+    animation: none;
+  }
+}
   /* Small, cozy welcome gallery end*/  
   </style>
 </head>
@@ -358,6 +435,72 @@
     </div>
   </div>
 </section>
+
+<!-- Picture popup -->
+<div
+  class="gallery-lightbox"
+  id="galleryLightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Bildansicht"
+  aria-hidden="true"
+>
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    type="button"
+    aria-label="Bildansicht schließen"
+  >&times;</button>
+
+  <img id="lightboxImage" src="" alt="">
+</div>
+<!-- Picture popup ends spodi je java za gallery-->
+<script>
+const lightbox = document.getElementById("galleryLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeButton = document.getElementById("lightboxClose");
+
+// Open a picture when clicked
+document.querySelectorAll(".gallery-item img").forEach((image) => {
+  image.style.cursor = "zoom-in";
+
+  image.addEventListener("click", () => {
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+// Close the popup
+function closeLightbox() {
+  lightbox.classList.remove("active");
+  lightbox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  lightboxImage.src = "";
+}
+
+closeButton.addEventListener("click", closeLightbox);
+
+// Clicking the enlarged picture closes it, too
+lightboxImage.addEventListener("click", closeLightbox);
+
+// Clicking the dark background closes it
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// Escape key closes the popup
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && lightbox.classList.contains("active")) {
+    closeLightbox();
+  }
+});
+</script>
   
   <!-- MENU / HIGHLIGHTS -->
   <section id="menu">
