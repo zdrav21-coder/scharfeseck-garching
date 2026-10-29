@@ -437,23 +437,11 @@
 </section>
 
 <!-- Picture popup -->
-<div
-  class="gallery-lightbox"
-  id="galleryLightbox"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Bildansicht"
-  aria-hidden="true"
->
-  <button
-    class="lightbox-close"
-    id="lightboxClose"
-    type="button"
-    aria-label="Bildansicht schließen"
-  >&times;</button>
-
+<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Bildansicht" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Bildansicht schließen">&times;</button>
   <img id="lightboxImage" src="" alt="">
 </div>
+  
 <!-- Picture popup ends spodi je java za gallery-->
 <script>
 const lightbox = document.getElementById("galleryLightbox");
@@ -536,33 +524,63 @@ document.addEventListener("keydown", (event) => {
           <br>
           <img src="https://scharfeseck-garching.de/images/free_wifi.png" alt="wifi" class="card-img menu-trigger">
           <img src="https://scharfeseck-garching.de/images/nette_toilette.png" alt="nette" class="card-img menu-trigger">
-        </div>
-      
-        <dialog id="imageModal">
-          <img src="" id="modalImg" style="max-width:90vw; max-height:90vh;">
-        </dialog>
-      
-        <script>
-          const modal = document.getElementById('imageModal');
-          const modalImg = document.getElementById('modalImg');
-          // Grab ALL images with the class, not just one ID
-          const triggerImgs = document.querySelectorAll('.menu-trigger');
-      
-          triggerImgs.forEach(img => {
-            img.addEventListener('click', () => {
-              modalImg.src = img.src;
-              modal.showModal();
-            });
-          });
-      
-          // Close when clicking the backdrop (outside the image)
-          modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.close();
-          });
-        </script>
+        </div>   
       </div>
     </div>
   </section>
+
+  <!-- Picture popup -->
+<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Bildansicht" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Bildansicht schließen">&times;</button>
+  <img id="lightboxImage" src="" alt="">
+</div>
+<!-- Picture popup ends spodi je java za gallery-->
+<script>
+const lightbox = document.getElementById("galleryLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeButton = document.getElementById("lightboxClose");
+
+// Open a picture when clicked
+document.querySelectorAll(".gallery-item img").forEach((image) => {
+  image.style.cursor = "zoom-in";
+
+  image.addEventListener("click", () => {
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+// Close the popup
+function closeLightbox() {
+  lightbox.classList.remove("active");
+  lightbox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  lightboxImage.src = "";
+}
+
+closeButton.addEventListener("click", closeLightbox);
+
+// Clicking the enlarged picture closes it, too
+lightboxImage.addEventListener("click", closeLightbox);
+
+// Clicking the dark background closes it
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// Escape key closes the popup
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && lightbox.classList.contains("active")) {
+    closeLightbox();
+  }
+});
+</script>
 
   <!-- EVENTS -->
   <section class="events" id="events">
