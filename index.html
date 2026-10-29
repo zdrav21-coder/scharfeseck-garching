@@ -219,6 +219,80 @@
     }
     .image-modal img {
     border: 10px solid #c9a227; 
+    }
+/* Small, cozy welcome gallery */
+.welcome-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 760px;
+  margin: 2rem auto 0;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  aspect-ratio: 4 / 3;
+  background: #2a2520;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-item span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px 8px 10px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.8)
+  );
+}
+  
+/* Mobile layout */
+@media (max-width: 600px) {
+  .welcome-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .gallery-item:last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 5px);
+    width: 100%;
+    justify-self: center;
+  }
+
+  .gallery-item span {
+    font-size: 0.75rem;
+    padding-bottom: 8px;
+  }
+}
+  /* Small, cozy welcome gallery end*/  
   </style>
 </head>
 <body>
@@ -251,17 +325,40 @@
   </header>
 
   <!-- WELCOME / INVITE -->
-  <section class="welcome" id="welcome">
-    <div class="container">
-      <div class="invite reveal">
-        <h3>Deine Kneipe in Garching – gute Zeiten garantiert.</h3>
-        <p><strong>Kalte Getränke, warme Küche, unvergessliche Abende.</strong></p>
-        <p></p>
-        <p style="margin-top:1.2rem; font-weight:600; color:var(--gold);">Wie zu Hause, nur mit besserer Küche. Willkommen in deiner Kneipe in Garching.</p>
+<section class="welcome" id="welcome">
+  <div class="container">
+    <div class="invite reveal">
+      <h3>Deine Kneipe in Garching – gute Zeiten garantiert.</h3>
+      <p>
+        <strong>Kalte Getränke, warme Küche, unvergessliche Abende.</strong>
+      </p>
+
+      <p style="margin-top:1.2rem; font-weight:600; color:var(--gold);">
+        Wie zu Hause, nur mit besserer Küche.
+        Willkommen in deiner Kneipe in Garching.
+      </p>
+
+      <!-- Cute little photo gallery -->
+      <div class="welcome-gallery">
+        <div class="gallery-item">
+          <img src="images/interior_1.png" alt="Gemütlicher Innenbereich unserer Kneipe" loading="lazy">
+          <span>Unser gemütliches Lokal</span>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/interior_2.png" alt="Leckeres Essen frisch aus unserer Küche" loading="lazy">
+          <span>Mit Liebe gekocht</span>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/outdoor_2.png" alt="Kalte Getränke für einen schönen Abend" loading="lazy">
+          <span>Auf schöne Abende!</span>
+        </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
+  
   <!-- MENU / HIGHLIGHTS -->
   <section id="menu">
     <div class="container">
