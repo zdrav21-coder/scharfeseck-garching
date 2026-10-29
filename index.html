@@ -175,51 +175,7 @@
     /* ===== ANIMATION ===== */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-
-    /* Style the dialog frame */
-    .image-modal {
-      border: none;
-      padding: 0;
-      background: transparent;
-      max-width: 90vw;
-      max-height: 90vh;
-      overflow: visible;
-    }
     
-    /* The dark overlay behind the frame */
-    .image-modal::backdrop {
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px); /* Optional: blurs the background */
-    }
-    
-    /* Style the image inside the frame */
-    .image-modal img {
-      max-width: 100%;
-      max-height: 90vh;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(201, 162, 39, 1.0);
-    }
-    
-    /* Optional close button styling */
-    .close-btn {
-      position: absolute;
-      top: -40px;
-      right: -10px;
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      line-height: 1;
-    }
-    
-    .close-btn:hover {
-      color: #ccc;
-    }
-    .image-modal img {
-    border: 10px solid #c9a227; 
-    }
 /* Small, cozy welcome gallery */
 .welcome-gallery {
   display: grid;
@@ -436,60 +392,6 @@
   </div>
 </section>
 
-<!-- Picture popup -->
-<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Bildansicht" aria-hidden="true">
-  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Bildansicht schließen">&times;</button>
-  <img id="lightboxImage" src="" alt="">
-</div>
-  
-<!-- Picture popup ends spodi je java za gallery-->
-<script>
-const lightbox = document.getElementById("galleryLightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const closeButton = document.getElementById("lightboxClose");
-
-// Open a picture when clicked
-document.querySelectorAll(".gallery-item img").forEach((image) => {
-  image.style.cursor = "zoom-in";
-
-  image.addEventListener("click", () => {
-    lightboxImage.src = image.src;
-    lightboxImage.alt = image.alt;
-
-    lightbox.classList.add("active");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  });
-});
-
-// Close the popup
-function closeLightbox() {
-  lightbox.classList.remove("active");
-  lightbox.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-  lightboxImage.src = "";
-}
-
-closeButton.addEventListener("click", closeLightbox);
-
-// Clicking the enlarged picture closes it, too
-lightboxImage.addEventListener("click", closeLightbox);
-
-// Clicking the dark background closes it
-lightbox.addEventListener("click", (event) => {
-  if (event.target === lightbox) {
-    closeLightbox();
-  }
-});
-
-// Escape key closes the popup
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && lightbox.classList.contains("active")) {
-    closeLightbox();
-  }
-});
-</script>
-  
   <!-- MENU / HIGHLIGHTS -->
   <section id="menu">
     <div class="container">
